@@ -358,7 +358,7 @@ class CIFAR(object):
           n_val=n_probe,
           random_seed=FLAGS.seed)
     elif 'uniform' in self.dataset_name:
-      (x_train, y_train, y_gold), _ = load_train_val_uniform_noise(
+      (x_train, y_train, y_gold), (x_probe, y_probe) = load_train_val_uniform_noise(
           x_train,
           y_train,
           n_classes=self.num_classes,
@@ -395,8 +395,6 @@ class CIFAR(object):
       return self
     else:
       assert self.dataset_name in ['cifar10', 'cifar100']
-
-    x_probe = None
 
     if not self.split_probe and x_probe is not None:
       # Usually used for supervised comparison.
